@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<script type="module" src="./js/main.js"></script>
+	<script type="module" src="./js/log.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title>Poker</title>
+		<link href="./css/UI.css" rel="stylesheet" type="text/css"/>
+	</head>
+	<body id="body" class="hud">
+		<div class="hud">
+			<div id="LobbyId">Lobby ID: <label id="lobbyuid">00000</label></div>
+			<div id="log">
+				<div id="logContainer"></div>
+				<input type="button" class="button-30 logButton" value="log" id="logButton"/></div>
+			<div id="UserId">User ID: <label id="uuid">00000</label></div>
+			<div id="GameChips">Game Chips: <label id="chipVal">00000</label></div>
+			<div id="Bet">
+				<div class="layers"><input id="betamt" type="number" min="1" max="1" inputmode="numeric" pattern="[0-9]*" active></input></div>
+				<div class="layers"><input type="button" class="button-30" value="Fold" id="foldbtn"/><input type="button" class="button-30" value="Call" id="callbtn"/><input type="button" class="button-30" value="Raise" id="raisebtn"/></div>
+			</div>
+		</div>
+		<canvas id="myCanvas"></canvas>
+	</body>
+</html>

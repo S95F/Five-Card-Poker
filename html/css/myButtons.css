@@ -1,0 +1,27 @@
+
+
+:root{
+	--headerColor:#00087;
+	--headerColorBright:#0202ba;
+}
+
+
+.mb1{
+	z-index:1000;
+	min-height:100%;
+	width:50%;
+	background-color: var(--headerColor);
+	color:white;
+	display:inline-block;
+	border:0;
+	box-shadow: 2px 2px 2px 4px black inset;
+	transition: transform .4s;
+	font-size:1.25vmax;
+	float:right;
+	user-select:none;
+}
+
+.mb1:hover{
+	transform: scale(1.05) ;
+	background-color: var(--headerColorBright);
+}

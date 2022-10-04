@@ -1,0 +1,165 @@
+<!--
+   lobby.html
+   
+   Copyright 2022 SF <>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   button css provided by https://getcssscan.com/css-buttons-examples by Loom #79
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<script src="/js/socket.io.js"></script>
+
+<script type="module" src="./js/lobby.js"></script>
+<script type="module" src="./js/log.js"></script>
+
+<head>
+	<title>Tenebrous Blue Games</title>
+	<link rel="icon" type="image/x-icon" href="/fav.png">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<link href="./css/lobby.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/myButtons.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/button79.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/UI.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+	<div id="alertBox" class="alertBox"></div>
+	
+
+	<div class="colContainer">
+		<div class="col">
+			<div class="max">
+				<div class="head">
+					<div class="header">
+						<div id="studioName">
+							Tenebrous Blue Games
+						</div>
+					</div>
+					<div id="signIn">
+						<button id="signinbutton" class="mb1 circularFont" style="display:none;">Sign In</button>
+					</div>
+				</div>
+				<div class="main">
+					<div class="mainInner">
+						<button id="cp" class="games button-79">5 Card Poker!</button>
+						<div id="cpUI">
+							<button id="cpcl" class="button-79">Create Lobby</button>
+							<div id="cpclname" class="circularFont">
+								<div>Enter Name: 
+								<input id="name" type="string"></div>
+								<button id="cpclnamejoin" class="button-79"> JOIN</button>
+							</div>
+							<button id="cpjl" class="button-79">Join Lobby</button>
+							<div id="cpjoinLobby" class="circularFont">
+								<div>Enter Name: 
+								<input id="namejl" type="string"></div>
+								<div>Enter Lobby ID: 
+								<input id="lobbyID" type="number"></div>
+								<button id="cpjljoin" class="button-79">JOIN</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="lobbyMGR" class="max">
+				<div class="flexWrapperRow max">
+					<div id="UserContainer" class="lobbyObjects">
+						<div id="usercontainerHeader" class="circularFont lobbyObjects">USERS</div>
+						<div id="usercontainerMain" class="circularFont"></div>
+					</div>
+					<div id="LobbyFunctions" class="lobbyObjects">
+						<div id="LobbyID" class="circularFont lobbyObjects">Lobby ID: <label id="lobbyuid">00000</label></div>
+						<div id="lobbyButtons"><button id="startLobby" class="button-79">Start Lobby</button></div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="threeJSdisplay" class="max">
+
+				<div class="hud">
+					<div id="tooltip"></div>
+					<div id="LobbyId">Lobby ID: <label id="globbyuid">00000</label></div>
+					<div id="log">
+						<div id="logContainer"></div>
+						<input type="button" class="button-30 logButton" value="log" id="logButton"/></div>
+					<div id="UserId">User ID: <label id="uuid">00000</label></div>
+					<div id="GameChips">Game Chips: <label id="chipVal">00000</label></div>
+					<div id="Bet">
+						<div class="layers"><input id="betamt" type="number" min="1" max="1" inputmode="numeric" pattern="[0-9]*" active></input></div>
+						<div class="layers">
+							<input type="button" class="button-30" value="Fold" id="foldbtn"/>
+							<input type="button" class="button-30" value="Call" id="callbtn"/>
+							<input type="button" class="button-30" value="Raise" id="raisebtn"/>
+						</div>
+					</div>
+					<div id="Discard">
+						<input type="button" class="button-30" value="Discard" id="discbtn" style="visibility:hidden"/>
+					</div>
+					<div id="startGame">
+						<input type="button" class="button-30" value="Start the Game!" id="strtbtn" style="visibility:hidden"/>
+					</div>
+				</div>
+				<canvas id="myCanvas"></canvas>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="max OFhide">
+				<div class="header">
+					<div id="studioName">
+						Cobalt Games
+					</div>
+				</div>
+				<div class="main">
+					<div class="mainInner circularFont">
+						<div id="login" class="login">
+							<h3>Login</h3>
+							<div><label>Username: </label><input id="lusername" type="string"></div>
+							<div><label>Password: </label><input id="lpass" type="password"></div>
+							<button id="loginbutton" class="button-79">Login</button>
+							<button id="lcreateAccountbutton" class="button-79">Create Account</button>
+						</div>
+						<div id="createUser" class="login">
+							<h3>Create User</h3>
+							<div><label>Username: </label><input id="createusername" type="string"></div>
+							<div><label>Email: </label><input id="cemail" type="string"></div>
+							<div><label>First Name: </label><input id="fname" type="string"></div>
+							<div><label>Last Name: </label><input id="lname" type="string"></div>
+							<div><label>Password: </label><input id="pass" type="password"></div>
+							<div><label>Repeat Password: </label><input id="cpass" type="password"></div>
+							<button id="createUserbutton" class="button-79">Create User</button>
+							<button id="gotologinbutton" class="button-79">Login</button>
+						</div>
+						<div id="forgotpass" class="login">
+							<h3>Please input either the username or the email of the account.</h3>
+							<div><label>Username: </label><input id="fusername" type="string"></div>
+							<div><label>Email: </label><input id="femail" type="string"></div>
+							<h3>We will send an email to the account holder in order to retrieve the account.</h3>
+							<button id="forgotpassbutton" class="button-79">Do the thing!</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
